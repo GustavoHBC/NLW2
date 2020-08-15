@@ -6,7 +6,6 @@
  - KnexJS
 
 
-
 ## Conexões
 
  - Rota para listar o total de conexões realizadas;
