@@ -1,6 +1,8 @@
 {
   "dependencies": {
-    "react-router-dom": "^5.2.0"
+    "knex": "^0.21.4",
+    "react-router-dom": "^5.2.0",
+    "sqlite3": "^5.0.0"
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.1.5"
