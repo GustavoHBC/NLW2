@@ -1,4 +1,5 @@
 import React, { useState, FormEvent } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import PageHeader from '../../components/PageHeader';
 import Input from '../../components/Input';
@@ -7,12 +8,15 @@ import Textarea from '../../components/Textarea';
 
 import warningIcon from '../../assets/images/icons/warning.svg';
 
+import api from '../../server/api';
+
 import './styles.css';
 
 
 
-
 function TeacherForm() { // variáveis no react depois de criadas não podem ser editadas
+    const history = useHistory();
+
     const [name, setName] = useState('');
     const [avatar, setAvatar] = useState('');
     const [whatsapp, setWhatsapp] = useState('');
@@ -35,10 +39,33 @@ function TeacherForm() { // variáveis no react depois de criadas não podem ser
     function handleCreateClass(e: FormEvent) {
         e.preventDefault();
 
+        api.post('classes', {
+            name,
+            avatar,
+            whatsapp,
+            bio,
+            subject,
+            cost: Number(cost),
+            schedule: scheduleItems
+        }).then(() => {
+            alert('Cadastro realizado com sucesso!');
+            history.push('/study');
+        }).catch(() => {
+            alert('Erro no cadastro');
+        })
+
     }
 
-    function setScheduleItemValue(index: number, field: string, value: string) {
+    function setScheduleItemValue(position: number, field: string, value: string) {
+        const updatedScheduleItems = scheduleItems.map((scheduleItem, index) => {
+            if (index === position) {
+                return { ...scheduleItem, [field]: value };
+            }
 
+            return scheduleItem;
+        })
+
+        setScheduleItems(updatedScheduleItems);
     }
 
     return (
@@ -123,6 +150,7 @@ function TeacherForm() { // variáveis no react depois de criadas não podem ser
                                     <Select
                                         name="week_day"
                                         label="Dia da semana"
+                                        value={scheduleItem.week_day}
                                         onChange={e => setScheduleItemValue(index, 'week_day', e.target.value)}
                                         options={[
                                             { value: '0', label: 'Domingo' },
@@ -134,8 +162,20 @@ function TeacherForm() { // variáveis no react depois de criadas não podem ser
                                             { value: '6', label: 'Sábado' },
                                         ]}
                                     />
-                                    <Input name="from" label="Das" type="time" />
-                                    <Input name="to" label="Até" type="time" />
+                                    <Input 
+                                        name="from"
+                                        label="Das"
+                                        type="time"
+                                        value={scheduleItem.from}
+                                        onChange={e => setScheduleItemValue(index, 'from', e.target.value)}
+                                    />
+                                    <Input 
+                                        name="to"
+                                        label="Até"
+                                        type="time"
+                                        value={scheduleItem.to}
+                                        onChange={e => setScheduleItemValue(index, 'to', e.target.value)}
+                                    />
                                 </div>
                             )
                         })}
