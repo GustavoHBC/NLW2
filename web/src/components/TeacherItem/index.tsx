@@ -2,7 +2,10 @@ import React from 'react';
 
 import whatsappIcon from '../../assets/images/icons/whatsapp.svg';
 
+import api from '../../server/api';
+
 import './styles.css';
+
 
 export interface Teacher {
     avatar: string;
@@ -19,6 +22,12 @@ interface TeacherItemProps {
 }
 
 const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
+    function createNewConnection() {
+        api.post('connections', {
+            user_id: teacher.id
+        })
+    }
+
     return (
         <article className="teacher-item">
             <header>
@@ -36,10 +45,10 @@ const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
                     Preço/hora
                     <strong>R$ {teacher.cost}</strong>
                 </p>
-                <button type="button">
+                <a onClick={createNewConnection} href={`https://wa.me/${teacher.whatsapp}`} target="_blank" >
                     <img src={whatsappIcon} alt="Whatsapp"/>
                     Entrar em Contato
-                </button>
+                </a>
             </footer>
         </article>
     )
