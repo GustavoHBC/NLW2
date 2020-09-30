@@ -37,6 +37,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 8
+    },
+
+    okButtonText: {
+        color: '#fff',
+        fontSize: 16,
+        fontFamily: 'Archivo_700Bold'
     }
 });
 
