@@ -91,6 +91,7 @@
     font: 700 1.6rem Archivo;
     display: flex;
     justify-content: center;
+    align-items: center;
     text-decoration: none;
     transition: background-color 0.2s;
     margin-top: 3.2rem;
