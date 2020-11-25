@@ -1,23 +1,23 @@
 # NLW2
+ Rocketseat public project
 
-## Tecnologias Usadas [on-server]
- - Typescript 3.9.7
+## What I used in this project?
+ - Typescript
  - ExpressJS
  - KnexJS
  - Cors
 
 
 ## Back-end
- - yarn >> instala dependências
- - yarn start >> starta projeto
- - yarn knex:migrate >> roda migrations do sqlite
- - yarn knex:migrate:rollback >> volta migrations do sqlite
+ - yarn <!-->> install dependencies-->
+ - yarn start <!-->> starta projeto-->
+ - yarn knex:migrate <!-->> roda migrations do sqlite-->
+ - yarn knex:migrate:rollback <!-->> volta migrations do sqlite-->
 
 
 ## Front-end [WEB]
- - yarn >> instala dependências
- - yarn start >> starta projeto
+ - yarn <!-->> instala dependências-->
+ - yarn start <!-->> starta projeto-->
 
 ## Front-end [MOBILE]
- - expo start >> starta projeto
- - expo start --android >> starta projeto buildando no emulador andriod já aberto
+ - expo start <!-->> starta projeto-->
